@@ -1,4 +1,4 @@
-import { Heart, ListFilter, PlusCircle, Star } from 'lucide-react'
+import { Heart, PlusCircle, Star } from 'lucide-react'
 
 import banner from '@/assets/banner.svg'
 import imgCard1 from '@/assets/image-card-1.png'
@@ -8,10 +8,12 @@ import product1 from '@/assets/product-1.png'
 import user1 from '@/assets/user-avatar-1.png'
 import user2 from '@/assets/user-avatar-2.png'
 
+import { BestSellerProducts } from './components/best-seller-products'
+
 export function Home() {
   return (
     <>
-      <main className="max-w-app mx-auto grid grid-cols-2 items-center gap-20 py-14">
+      <main className="mx-auto grid max-w-app grid-cols-2 items-center gap-20 py-14">
         <div className="flex max-w-[600px] flex-col space-y-4">
           <h2 className="text-4xl text-zinc-900">Product Collection</h2>
           <p className="text-lg leading-8 text-zinc-500">
@@ -42,7 +44,7 @@ export function Home() {
       </main>
 
       <section className="bg-zinc-50">
-        <div className="max-w-app mx-auto flex flex-col items-center gap-12 py-[3.75rem]">
+        <div className="mx-auto flex max-w-app flex-col items-center gap-12 py-[3.75rem]">
           <h3 className="border-b-2 border-primary text-2xl font-bold text-zinc-700">
             How To Order Our Products
           </h3>
@@ -90,7 +92,7 @@ export function Home() {
         </div>
       </section>
       <section>
-        <div className="max-w-app mx-auto flex flex-col items-center gap-12 py-[3.75rem]">
+        <div className="mx-auto flex max-w-app flex-col items-center gap-12 py-[3.75rem]">
           <h3 className="border-b-2 border-primary text-2xl font-bold text-zinc-700">
             Reviews
           </h3>
@@ -165,7 +167,7 @@ export function Home() {
         </div>
       </section>
       <section className="bg-zinc-50">
-        <div className="max-w-app mx-auto flex flex-col items-center gap-12 py-[3.75rem]">
+        <div className="mx-auto flex max-w-app flex-col items-center gap-12 py-[3.75rem]">
           <h3 className="border-b-2 border-primary text-2xl font-bold text-zinc-700">
             Why You Picking Us
           </h3>
@@ -191,107 +193,9 @@ export function Home() {
           </div>
         </div>
       </section>
-      <section>
-        <div className="max-w-app mx-auto flex flex-col items-center gap-16 py-[3.75rem]">
-          <h3 className="border-b-2 border-primary text-2xl font-bold text-zinc-700">
-            Best Seller Products
-          </h3>
-
-          <div className="flex w-full items-center justify-center gap-6">
-            <div className="h-1 w-full rounded-full bg-primary" />
-            <div className="flex gap-9 rounded-lg border border-zinc-300 p-1.5">
-              <button className="w-[100px] rounded-md bg-primary px-4 py-2.5 text-white">
-                Clothing
-              </button>
-              <button className="w-[100px] text-zinc-900">Shoes</button>
-            </div>
-            <div className="h-1 w-full bg-primary" />
-          </div>
-
-          <div className="flex w-full items-center justify-between gap-4">
-            <div className="flex w-full justify-between gap-9 rounded-lg border border-zinc-300 p-1.5">
-              <button className="w-[100px] rounded-md bg-primary px-4 py-2.5 text-white">
-                Tops
-              </button>
-              <button className="w-[100px] text-zinc-900">Bottoms</button>
-              <button className="w-[100px] text-zinc-900">Dresses</button>
-              <button className="w-[100px] text-zinc-900">Outerwear</button>
-              <button className="w-[100px] text-zinc-900">Activewear</button>
-            </div>
-            <button className="flex size-10 items-center justify-center rounded-full border border-zinc-700">
-              <ListFilter className="size-6" />
-            </button>
-          </div>
-
-          <div className="flex items-center justify-between gap-12">
-            <div className="flex h-[452px] w-[308px] flex-col rounded-lg border-2 border-zinc-300 p-6">
-              <div className="relative h-[260px] w-[260px] ">
-                <button className="absolute right-0 top-0 z-10">
-                  <Heart className="size-6" />
-                </button>
-                <img
-                  src={product1}
-                  alt=""
-                  className="h-full w-full object-cover"
-                />
-              </div>
-
-              <div className="relative mt-auto flex flex-col gap-3">
-                <h3 className="text-2xl font-medium text-zinc-900">Warning</h3>
-                <span className="text-xs text-zinc-400">Description</span>
-                <label className="font-bold text-zinc-900">8.00 USD</label>
-                <button className="absolute bottom-0 right-0">
-                  <PlusCircle className="size-8 fill-primary text-white" />
-                </button>
-              </div>
-            </div>
-            <div className="flex h-[452px] w-[308px] flex-col rounded-lg border-2 border-zinc-300 p-6">
-              <div className="relative h-[260px] w-[260px] ">
-                <button className="absolute right-0 top-0 z-10">
-                  <Heart className="size-6" />
-                </button>
-                <img
-                  src={product1}
-                  alt=""
-                  className="h-full w-full object-cover"
-                />
-              </div>
-
-              <div className="relative mt-auto flex flex-col gap-3">
-                <h3 className="text-2xl font-medium text-zinc-900">Warning</h3>
-                <span className="text-xs text-zinc-400">Description</span>
-                <label className="font-bold text-zinc-900">8.00 USD</label>
-                <button className="absolute bottom-0 right-0">
-                  <PlusCircle className="size-8 fill-primary text-white" />
-                </button>
-              </div>
-            </div>
-            <div className="flex h-[452px] w-[308px] flex-col rounded-lg border-2 border-zinc-300 p-6">
-              <div className="relative h-[260px] w-[260px] ">
-                <button className="absolute right-0 top-0 z-10">
-                  <Heart className="size-6" />
-                </button>
-                <img
-                  src={product1}
-                  alt=""
-                  className="h-full w-full object-cover"
-                />
-              </div>
-
-              <div className="relative mt-auto flex flex-col gap-3">
-                <h3 className="text-2xl font-medium text-zinc-900">Warning</h3>
-                <span className="text-xs text-zinc-400">Description</span>
-                <label className="font-bold text-zinc-900">8.00 USD</label>
-                <button className="absolute bottom-0 right-0">
-                  <PlusCircle className="size-8 fill-primary text-white" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <BestSellerProducts />
       <section className="bg-zinc-50">
-        <div className="max-w-app mx-auto flex flex-col items-center gap-16 py-[3.75rem]">
+        <div className="mx-auto flex max-w-app flex-col items-center gap-16 py-[3.75rem]">
           <h3 className="border-b-2 border-primary text-2xl font-bold text-zinc-700">
             Discount Products
           </h3>
