@@ -5,7 +5,7 @@ import logo from '@/assets/logo.svg'
 
 export function Header() {
   return (
-    <div className="bg-header flex h-[72px] items-center justify-between border-b-2 border-zinc-300 px-20">
+    <div className="flex h-[72px] items-center justify-between border-b-2 border-zinc-300 bg-header px-20">
       <NavLink to="/" className="h-[20px] w-[120px]">
         <img className="h-full w-full" src={logo} alt="" />
       </NavLink>
