@@ -14,11 +14,11 @@ export function Input({ label, Icon, width, ...props }: InputProps) {
       <legend className="ml-3 px-1 text-xs group-focus/input:text-primary">
         {label}
       </legend>
-      <div className="flex items-center gap-2">
+      <div className="flex w-full items-center gap-2">
         <Icon className="mx-3 size-5 text-zinc-700" />
         <input
           {...props}
-          className={`group/input w-full border-none outline-none placeholder:text-zinc-600 ${props.className}`}
+          className={`group/input my-1 h-full w-full border-none outline-none placeholder:-mx-1 placeholder:text-zinc-600 ${props.className}`}
         />
       </div>
     </fieldset>

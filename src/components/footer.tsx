@@ -55,7 +55,7 @@ export function Footer() {
               </a>
               <a
                 href=""
-                className="flex flex items-center gap-2 text-sm text-zinc-500"
+                className="flex items-center gap-2 text-sm text-zinc-500"
               >
                 <Twitter className="size-5" />X
               </a>
