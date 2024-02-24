@@ -11,7 +11,7 @@ export interface CartMenuProps {
 
 export function CartMenu({ buttonTitle }: CartMenuProps) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 self-start">
       <div className="flex flex-col gap-6 rounded-2xl bg-zinc-50 px-9 py-8">
         <h3 className="text-xl font-medium">Summary ( 2 items )</h3>
         <div className="flex flex-col gap-2">
