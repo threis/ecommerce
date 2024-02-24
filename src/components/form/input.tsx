@@ -18,7 +18,7 @@ export function Input({ label, Icon, width, ...props }: InputProps) {
         <Icon className="mx-3 size-5 text-zinc-700" />
         <input
           {...props}
-          className={`group/input my-1 h-full w-full border-none outline-none placeholder:-mx-1 placeholder:text-zinc-600 ${props.className}`}
+          className={`group/input my-1 h-full w-full border-none bg-transparent outline-none placeholder:-mx-1 placeholder:text-zinc-600 ${props.className}`}
         />
       </div>
     </fieldset>

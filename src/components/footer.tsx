@@ -1,6 +1,12 @@
 import { Facebook, Instagram, Languages, Linkedin, Twitter } from 'lucide-react'
 
 import logo from '@/assets/logo.svg'
+import applePay from '@/assets/payments/apple-pay.svg'
+import googlePay from '@/assets/payments/google-pay.svg'
+import mastercard from '@/assets/payments/mastercard.svg'
+import payPal from '@/assets/payments/pay-pal.svg'
+import unionPay from '@/assets/payments/union-pay.svg'
+import visa from '@/assets/payments/visa.svg'
 
 import {
   Select,
@@ -61,9 +67,40 @@ export function Footer() {
               </a>
             </div>
           </div>
-          <div>
+          <div className="flex flex-col gap-4">
             <h3 className="text-xl font-medium">Payment Method</h3>
-            <div></div>
+            <div className="flex max-w-[180px] flex-wrap items-center gap-2">
+              <img
+                className="h-6 w-8 rounded-lg border border-zinc-300 bg-white p-1"
+                src={visa}
+                alt=""
+              />
+              <img
+                className="h-6 w-8 rounded-lg border border-zinc-300 bg-white p-1"
+                src={unionPay}
+                alt=""
+              />
+              <img
+                className="h-6 w-8 rounded-lg border border-zinc-300 bg-white p-1"
+                src={mastercard}
+                alt=""
+              />
+              <img
+                className="h-6 w-8 rounded-lg border border-zinc-300 bg-white p-1"
+                src={payPal}
+                alt=""
+              />
+              <img
+                className="h-6 w-8 rounded-lg border border-zinc-300 bg-white p-1"
+                src={googlePay}
+                alt=""
+              />
+              <img
+                className="h-6 w-8 rounded-lg border border-zinc-300 bg-white p-1"
+                src={applePay}
+                alt=""
+              />
+            </div>
           </div>
           <div className="flex flex-col gap-4">
             <a href="" className="text-xl font-medium">
