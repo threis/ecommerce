@@ -5,6 +5,7 @@ import { ErrorLayout } from './layouts/error'
 import { NotFound } from './pages/404'
 import { Account } from './pages/account'
 import { Cart } from './pages/cart'
+import { Payment } from './pages/cart/payment'
 import { Shipping } from './pages/cart/shipping'
 import { Home } from './pages/home'
 import { Product } from './pages/product'
@@ -26,6 +27,7 @@ export function Router() {
         <Route path="/account" element={<Account />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/cart/shipping" element={<Shipping />} />
+        <Route path="/cart/payment" element={<Payment />} />
       </Route>
       <Route path="*" element={<ErrorLayout />}>
         <Route path="*" element={<NotFound />} />
