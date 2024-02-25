@@ -194,13 +194,13 @@ export function Home() {
         </div>
       </section>
       <BestSellerProducts />
-      <section className="bg-zinc-50">
-        <div className="mx-auto flex max-w-app flex-col items-center gap-16 py-[3.75rem]">
+      <section>
+        <div className="mx-auto flex w-app flex-col items-center justify-between gap-16  py-[3.75rem]">
           <h3 className="border-b-2 border-primary text-2xl font-bold text-zinc-700">
             Discount Products
           </h3>
 
-          <div className="flex items-center justify-between gap-12">
+          <div className="flex w-full items-center justify-between gap-12">
             <div className="flex h-[452px] w-[308px] flex-col rounded-lg border-2 border-zinc-300 p-6">
               <div className="relative h-[260px] w-[260px] ">
                 <button className="absolute left-0 top-0 z-10 rounded-full bg-primary p-2.5 text-white">

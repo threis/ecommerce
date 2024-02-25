@@ -7,7 +7,7 @@ import { CarouselCards } from './carousel-cards'
 
 export function Product() {
   return (
-    <div className="mx-auto min-h-screen w-[1200px] py-9">
+    <div className="mx-auto min-h-screen w-app py-9">
       <div className="flex flex-col gap-3">
         <h3 className="text-lg text-zinc-500">
           Home/ <span className="font-medium text-zinc-900">Product</span>

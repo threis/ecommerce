@@ -8,6 +8,7 @@ import {
   Smartphone,
   UserCircle,
 } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 import { Input } from '@/components/form/input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
@@ -16,6 +17,8 @@ import { CartMenu } from './components/cart-menu'
 import { ProgressBar } from './components/progress-bar'
 
 export function Shipping() {
+  const navigate = useNavigate()
+
   return (
     <div className="mx-auto min-h-screen w-[1200px] py-9">
       <div className="flex flex-col gap-3">
@@ -148,7 +151,10 @@ export function Shipping() {
           </div>
         </div>
 
-        <CartMenu buttonTitle="Continue" />
+        <CartMenu
+          buttonTitle="Continue"
+          onNavigation={() => navigate('/cart/payment')}
+        />
       </div>
     </div>
   )

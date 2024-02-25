@@ -7,9 +7,10 @@ import visa from '@/assets/payments/visa.svg'
 
 export interface CartMenuProps {
   buttonTitle: string
+  onNavigation?: () => void
 }
 
-export function CartMenu({ buttonTitle }: CartMenuProps) {
+export function CartMenu({ buttonTitle, onNavigation }: CartMenuProps) {
   return (
     <div className="flex flex-col gap-6 self-start">
       <div className="flex flex-col gap-6 rounded-2xl bg-zinc-50 px-9 py-8">
@@ -33,6 +34,7 @@ export function CartMenu({ buttonTitle }: CartMenuProps) {
         <button
           type="button"
           className="w-full rounded-full bg-primary py-3 text-white hover:bg-primary/70"
+          onClick={onNavigation}
         >
           {buttonTitle}
         </button>

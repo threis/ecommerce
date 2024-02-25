@@ -13,15 +13,18 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
+import { DialogContent } from '@/components/ui/sidebar-dialog'
 
 export function Filters() {
   return (
-    <div className="flex flex-col border-r-2 border-r-zinc-300 px-8 py-2 ">
-      <h3 className="text-center text-4xl font-medium text-primary">Filters</h3>
-      <div className=" my-8 h-[2px] w-full bg-zinc-300" />
+    <DialogContent>
+      <button className="absolute right-28 top-4 min-w-20 rounded-lg bg-primary p-2 px-3 text-white hover:bg-primary/90">
+        Filter
+      </button>
+
       <Accordion
         type="multiple"
-        className="mx-auto w-[90%] space-y-10"
+        className="mx-auto w-[90%] space-y-2"
         defaultValue={[
           'size',
           'color',
@@ -181,6 +184,6 @@ export function Filters() {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-    </div>
+    </DialogContent>
   )
 }

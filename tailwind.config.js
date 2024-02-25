@@ -11,10 +11,10 @@ module.exports = {
   theme: {
     extend: {
       width: {
-        app: '1024px',
+        app: '1200px',
       },
       maxWidth: {
-        app: '1024px',
+        app: '1200px',
       },
       colors: {
         border: 'hsl(var(--border))',

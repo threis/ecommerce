@@ -3,6 +3,11 @@
 @tailwind utilities;
  
 @layer base {
+
+  *{
+    scrollbar-color: #ccc #dedede;
+  }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 100 2% 28%;

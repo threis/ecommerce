@@ -1,4 +1,5 @@
 import { Minus, Plus, Tags } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 import noProductInBag from '@/assets/no-product-in-bag.svg'
 import product1 from '@/assets/product-1.png'
@@ -8,6 +9,7 @@ import { CartMenu } from './components/cart-menu'
 import { ProgressBar } from './components/progress-bar'
 
 export function Cart() {
+  const navigate = useNavigate()
   const isEmpty = false
   return (
     <div className="mx-auto min-h-screen w-[1200px] py-9">
@@ -90,7 +92,10 @@ export function Cart() {
               placeholder="Enter promotion code to get discount"
             />
           </div>
-          <CartMenu buttonTitle="Continue" />
+          <CartMenu
+            buttonTitle="Continue"
+            onNavigation={() => navigate('/cart/shipping')}
+          />
         </div>
       )}
     </div>
