@@ -7,7 +7,7 @@ export function SignUp() {
   return (
     <div className="mx-auto flex w-app flex-col items-center space-y-6 p-10">
       <img src={logo} alt="" className="h-20 w-[200px]" />
-      <form className="flex h-[624px] w-[600px] flex-col items-center space-y-8 rounded-3xl border-2 border-zinc-300 p-9">
+      <form className="flex h-[624px] w-[600px] flex-col items-center space-y-8 rounded-3xl border-2 border-border p-9">
         <div className="flex flex-col items-center space-y-4">
           <h2 className="text-3xl font-medium text-zinc-900">
             Sign up as our customer

@@ -17,14 +17,14 @@ export function Search() {
       <div className="mx-auto flex w-app flex-col gap-20 py-14">
         <Filters />
         <div className="flex w-full flex-col gap-3">
-          <h3 className="text-lg text-zinc-500">
-            Home/ <span className="font-medium text-zinc-900">Search</span>
+          <h3 className="text-lg text-muted-foreground">
+            Home/ <span className="font-medium text-foreground">Search</span>
           </h3>
           <div className="mb-6 flex justify-between">
-            <h2 className="text-4xl text-zinc-900">Shirt (2005 results)</h2>
+            <h2 className="text-4xl text-foreground">Shirt (2005 results)</h2>
             <div className="flex items-center gap-2">
               <DialogTrigger asChild>
-                <button className="bg-transparent px-6 py-1 text-zinc-500  hover:text-primary">
+                <button className="bg-transparent px-6 py-1 text-muted-foreground  hover:text-primary">
                   Filter
                 </button>
               </DialogTrigger>
@@ -53,7 +53,7 @@ export function Search() {
           ) : (
             <>
               <div className="mb-10 flex w-full items-center justify-between">
-                <h3 className="inline border-b-2 border-primary pb-1 text-xl font-medium text-zinc-900">
+                <h3 className="inline border-b-2 border-primary pb-1 text-xl font-medium text-foreground">
                   Show results for shirts:
                 </h3>
                 <SortResults />
@@ -61,12 +61,12 @@ export function Search() {
               <div className="flex w-full flex-wrap justify-between gap-10">
                 {Array.from({ length: 10 }).map((_, index) => (
                   <div
-                    className="flex h-[452px] w-[308px] flex-col rounded-lg border-2 border-zinc-300 p-6"
+                    className="flex h-[452px] w-[308px] flex-col rounded-lg border-2 border-border p-6"
                     key={index}
                   >
                     <div className="relative h-[260px] w-[260px] ">
                       <button className="absolute right-0 top-0 z-10">
-                        <Heart className="size-6" />
+                        <Heart className="size-6 text-foreground" />
                       </button>
                       <img
                         src={product1}
@@ -75,11 +75,13 @@ export function Search() {
                       />
                     </div>
                     <div className="relative mt-auto flex flex-col gap-3">
-                      <h3 className="text-2xl font-medium text-zinc-900">
+                      <h3 className="text-2xl font-medium text-foreground">
                         Warning
                       </h3>
-                      <span className="text-xs text-zinc-400">Description</span>
-                      <label className="font-bold text-zinc-900">
+                      <span className="text-xs text-muted-foreground">
+                        Description
+                      </span>
+                      <label className="font-bold text-foreground">
                         8.00 USD
                       </label>
                       <button className="absolute bottom-0 right-0">

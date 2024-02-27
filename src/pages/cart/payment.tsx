@@ -13,18 +13,21 @@ export function Payment() {
   return (
     <div className="mx-auto min-h-screen w-[1200px] py-9">
       <div className="flex flex-col gap-3">
-        <h3 className="text-lg text-zinc-500">
-          Home/ <span className="font-medium text-zinc-900">Shopping Bag</span>
+        <h3 className="text-lg text-muted-foreground">
+          Home/{' '}
+          <span className="font-medium text-foreground">Shopping Bag</span>
         </h3>
         <div className="mb-6 flex justify-between">
-          <h2 className="text-4xl text-zinc-900">Shopping Bag</h2>
+          <h2 className="text-4xl text-foreground">Shopping Bag</h2>
         </div>
       </div>
       <ProgressBar step={['card', 'shipping', 'payment']} />
 
       <div className="grid grid-cols-[1fr_480px] gap-6">
-        <div className="flex flex-col gap-10 self-start rounded-2xl bg-zinc-50 p-6">
-          <h3 className="text-2xl font-medium text-zinc-700">Payment Method</h3>
+        <div className="flex flex-col gap-10 self-start rounded-2xl bg-secondary p-6">
+          <h3 className="text-2xl font-medium text-foreground">
+            Payment Method
+          </h3>
 
           <RadioGroup
             className="flex items-center justify-between gap-4"
@@ -32,21 +35,21 @@ export function Payment() {
           >
             <label
               htmlFor="credit"
-              className="flex w-[140px] items-center justify-between rounded-lg border-2 border-zinc-300 p-3"
+              className="flex w-[140px] items-center justify-between rounded-lg border-2 border-muted-foreground p-3"
             >
               <div className="flex items-center space-x-2">
-                <CreditCard className="size-5" />
+                <CreditCard className="size-5 text-muted-foreground" />
                 <span>Card</span>
               </div>
               <RadioGroupItem value="credit" id="credit" />
             </label>
             <label
               htmlFor="paypal"
-              className="flex w-[140px] items-center justify-between rounded-lg border-2 border-zinc-300 p-3"
+              className="flex w-[140px] items-center justify-between rounded-lg border-2 border-muted-foreground p-3"
             >
               <div className="flex items-center space-x-2">
                 <img
-                  className="h-6 w-8 rounded-lg border border-zinc-300 bg-white p-1"
+                  className="h-6 w-8 rounded-lg border border-muted-foreground bg-white p-1"
                   src={payPal}
                   alt=""
                 />
@@ -56,11 +59,11 @@ export function Payment() {
             </label>
             <label
               htmlFor="google-pay"
-              className="flex w-[140px] items-center justify-between rounded-lg border-2 border-zinc-300 p-3"
+              className="flex w-[140px] items-center justify-between rounded-lg border-2 border-muted-foreground p-3"
             >
               <div className="flex items-center space-x-2">
                 <img
-                  className="h-6 w-8 rounded-lg border border-zinc-300 bg-white p-1"
+                  className="h-6 w-8 rounded-lg border border-muted-foreground bg-white p-1"
                   src={googlePay}
                   alt=""
                 />
@@ -70,11 +73,11 @@ export function Payment() {
             </label>
             <label
               htmlFor="apple-pay"
-              className="flex w-[140px] items-center justify-between rounded-lg border-2 border-zinc-300 p-3"
+              className="flex w-[140px] items-center justify-between rounded-lg border-2 border-muted-foreground p-3"
             >
               <div className="flex items-center space-x-2">
                 <img
-                  className="h-6 w-8 rounded-lg border border-zinc-300 bg-white p-1"
+                  className="h-6 w-8 rounded-lg border border-muted-foreground bg-white p-1"
                   src={applePay}
                   alt=""
                 />

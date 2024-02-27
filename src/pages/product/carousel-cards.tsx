@@ -17,7 +17,7 @@ export function CarouselCards({ title }: CarouselCardsProps) {
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <h3 className="inline border-b-2 border-primary pb-1 text-xl font-medium text-zinc-900">
+        <h3 className="inline border-b-2 border-primary pb-1 text-xl font-medium text-foreground">
           {title}
         </h3>
         <a href="" className="text-lg font-medium text-primary">
@@ -34,7 +34,7 @@ export function CarouselCards({ title }: CarouselCardsProps) {
           <CarouselContent className="flex first:-ml-10">
             {Array.from({ length: 10 }).map((_, index) => (
               <CarouselItem key={index} className="mr-12 basis-1/4 px-10">
-                <div className="flex h-[452px] w-[308px] flex-col rounded-lg border-2 border-zinc-300 p-6">
+                <div className="flex h-[452px] w-[308px] flex-col rounded-lg border-2 border-border p-6">
                   <div className="relative h-[260px] w-[260px] ">
                     <button className="absolute right-0 top-0 z-10">
                       <Heart className="size-6" />
@@ -46,11 +46,15 @@ export function CarouselCards({ title }: CarouselCardsProps) {
                     />
                   </div>
                   <div className="relative mt-auto flex flex-col gap-3">
-                    <h3 className="text-2xl font-medium text-zinc-900">
+                    <h3 className="text-2xl font-medium text-foreground">
                       Warning
                     </h3>
-                    <span className="text-xs text-zinc-400">Description</span>
-                    <label className="font-bold text-zinc-900">8.00 USD</label>
+                    <span className="text-muted-foreground text-xs">
+                      Description
+                    </span>
+                    <label className="font-bold text-foreground">
+                      8.00 USD
+                    </label>
                     <button className="absolute bottom-0 right-0">
                       <PlusCircle className="size-8 fill-primary text-white" />
                     </button>

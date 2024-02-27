@@ -21,8 +21,8 @@ export function Pagination() {
     <div className="flex items-center justify-between">
       <div>
         <Select defaultValue="12">
-          <fieldset className="rounded-lg border-2 border-zinc-300 focus-within:border-2 focus-within:border-primary">
-            <SelectTrigger className="peer h-8 w-20 rounded-lg border-none bg-transparent px-4 py-2 focus:ring-0 focus:ring-transparent focus:ring-offset-0 ">
+          <fieldset className="rounded-lg border-2 border-muted-foreground focus-within:border-2 focus-within:border-primary">
+            <SelectTrigger className="peer h-8 w-20 rounded-lg border-none bg-transparent px-4 py-2 text-muted-foreground focus:ring-0 focus:ring-transparent focus:ring-offset-0">
               <div className="flex items-center justify-start gap-4">
                 <SelectValue defaultValue="english" />
               </div>
@@ -31,7 +31,7 @@ export function Pagination() {
               Page
             </legend>
           </fieldset>
-          <SelectContent className="bg-zinc-50">
+          <SelectContent className="bg-secondary">
             <SelectItem value="12">
               <span>12</span>
             </SelectItem>
@@ -45,7 +45,7 @@ export function Pagination() {
         </Select>
       </div>
       <div>
-        <PaginationPrimitive>
+        <PaginationPrimitive className="text-foreground">
           <PaginationContent>
             <PaginationItem>
               <PaginationPrevious href="#" />

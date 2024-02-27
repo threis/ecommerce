@@ -14,17 +14,18 @@ export function Cart() {
   return (
     <div className="mx-auto min-h-screen w-[1200px] py-9">
       <div className="flex flex-col gap-3">
-        <h3 className="text-lg text-zinc-500">
-          Home/ <span className="font-medium text-zinc-900">Shopping Bag</span>
+        <h3 className="text-lg text-muted-foreground">
+          Home/{' '}
+          <span className="font-medium text-foreground">Shopping Bag</span>
         </h3>
         <div className="mb-6 flex justify-between">
-          <h2 className="text-4xl text-zinc-900">Shopping Bag</h2>
+          <h2 className="text-4xl text-foreground">Shopping Bag</h2>
         </div>
       </div>
       <ProgressBar step={['card']} />
 
       {isEmpty ? (
-        <div className="flex h-[590px] w-full flex-col items-center rounded-2xl bg-zinc-50 p-20">
+        <div className="flex h-[590px] w-full flex-col items-center rounded-2xl bg-secondary p-20">
           <div className="flex h-[200px] w-[200px] items-center justify-center">
             <img
               className="h-full w-full object-cover"
@@ -33,10 +34,10 @@ export function Cart() {
             />
           </div>
           <div className="my-10 flex flex-col items-center gap-2">
-            <h3 className="text-2xl font-medium text-zinc-900">
+            <h3 className="text-2xl font-medium text-foreground">
               No product in Bag
             </h3>
-            <p className="text-lg text-zinc-500">
+            <p className="text-lg text-muted-foreground">
               Ordered product will appear here
             </p>
           </div>
@@ -46,8 +47,8 @@ export function Cart() {
         </div>
       ) : (
         <div className="grid grid-cols-[1fr_480px] gap-6">
-          <div className="flex flex-col self-start rounded-2xl bg-zinc-50 p-6">
-            <div className="relative flex min-h-[180px] gap-4 rounded-lg border border-zinc-300 p-6">
+          <div className="flex flex-col self-start rounded-2xl bg-secondary p-6">
+            <div className="relative flex min-h-[180px] gap-4 rounded-lg border border-muted-foreground p-6">
               <button
                 type="button"
                 className="absolute right-6 top-4 text-xs text-rose-600 transition-all hover:border-b hover:border-rose-600"
@@ -61,9 +62,9 @@ export function Cart() {
                   alt=""
                 />
               </div>
-              <div className="flex h-full w-full flex-col gap-4 text-zinc-700">
-                <h2 className="text-xl font-medium">Product</h2>
-                <p className="text-xs text-zinc-500">
+              <div className="flex h-full w-full flex-col gap-4">
+                <h2 className="text-xl font-medium text-foreground">Product</h2>
+                <p className="text-xs text-muted-foreground">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Placeat, iure voluptas cumque soluta unde iste rerum optio
                   voluptatibus, facere sapiente adipisci delectus vitae debitis
@@ -71,21 +72,21 @@ export function Cart() {
                 </p>
 
                 <div className="flex items-center gap-2">
-                  <span className="text-sm">Qty</span>
-                  <button className="flex items-center justify-center rounded-full bg-zinc-300 p-2 hover:bg-zinc-200">
+                  <span className="text-sm text-muted-foreground">Qty</span>
+                  <button className="flex items-center justify-center rounded-full bg-muted-foreground p-2 text-secondary hover:bg-primary">
                     <Minus className="size-3" />
                   </button>
-                  <span className="flex size-5 items-center justify-center text-xl font-medium">
+                  <span className="flex size-5 items-center justify-center text-xl font-medium text-muted-foreground">
                     1
                   </span>
-                  <button className="flex items-center justify-center rounded-full bg-zinc-300 p-2 hover:bg-zinc-200">
+                  <button className="flex items-center justify-center rounded-full bg-muted-foreground p-2 text-secondary hover:bg-primary">
                     <Plus className="size-3" />
                   </button>
                 </div>
               </div>
             </div>
 
-            <div className="my-10 h-0.5 w-full bg-zinc-200" />
+            <div className="my-10 h-0.5 w-full bg-foreground" />
             <Input
               Icon={Tags}
               label="Code"

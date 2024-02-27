@@ -36,28 +36,28 @@ export function Filters() {
       >
         <AccordionItem value="size">
           <AccordionTrigger>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-foreground">
               <Square />
-              <span>Size</span>
+              <span className="text-foreground">Size</span>
             </div>
           </AccordionTrigger>
           <AccordionContent className="flex gap-1">
-            <button className="flex size-8 items-center justify-center rounded-md border border-zinc-300 font-bold text-zinc-900 hover:bg-zinc-100">
+            <button className="flex size-8 items-center justify-center rounded-md border border-muted-foreground font-bold text-muted-foreground hover:bg-primary hover:text-white">
               M
             </button>
-            <button className="flex size-8 items-center justify-center rounded-md border border-zinc-300 font-bold text-zinc-900 hover:bg-zinc-100">
+            <button className="flex size-8 items-center justify-center rounded-md border border-muted-foreground font-bold text-muted-foreground hover:bg-primary hover:text-white">
               L
             </button>
-            <button className="flex size-8 items-center justify-center rounded-md border border-zinc-300 font-bold text-zinc-900 hover:bg-zinc-100">
+            <button className="flex size-8 items-center justify-center rounded-md border border-muted-foreground font-bold text-muted-foreground hover:bg-primary hover:text-white">
               XL
             </button>
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="color">
           <AccordionTrigger>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-foreground">
               <Palette />
-              <span>Color</span>
+              <span className="text-foreground">Color</span>
             </div>
           </AccordionTrigger>
           <AccordionContent className="flex gap-2">
@@ -65,7 +65,7 @@ export function Filters() {
               <div className="size-6 rounded-full bg-orange-500 hover:bg-orange-300" />
             </button>
             <button>
-              <div className="size-6 rounded-full bg-lime-500 hover:bg-lime-300" />
+              <div className="size-6 rounded-full bg-primary hover:bg-primary/90" />
             </button>
             <button>
               <div className="size-6 rounded-full bg-red-500 hover:bg-red-300" />
@@ -80,20 +80,20 @@ export function Filters() {
         </AccordionItem>
         <AccordionItem value="price">
           <AccordionTrigger>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-foreground">
               <DollarSign />
-              <span>Price Range</span>
+              <span className="text-foreground">Price Range</span>
             </div>
           </AccordionTrigger>
           <AccordionContent className="flex flex-col items-center gap-3">
             <div className="flex gap-2">
-              <span>Min</span>
+              <span className="text-muted-foreground">Min</span>
               <input
                 type="number"
-                className="w-20 border border-zinc-300 pl-2"
+                className="w-20 border border-border bg-secondary pl-2 text-muted-foreground"
                 defaultValue={5}
               />
-              <span>USD</span>
+              <span className="text-muted-foreground">USD</span>
             </div>
             <div className="ml-8 flex flex-col items-center self-start">
               <div className="flex size-3 rounded-full bg-primary" />
@@ -101,31 +101,31 @@ export function Filters() {
               <div className="flex size-3 rounded-full bg-primary" />
             </div>
             <div className="flex gap-2">
-              <span>Max</span>
+              <span className="text-muted-foreground">Max</span>
               <input
                 type="number"
-                className="w-20 border border-zinc-300 pl-2"
+                className="w-20 border border-border bg-secondary pl-2 text-muted-foreground"
                 defaultValue={999}
               />
-              <span>USD</span>
+              <span className="text-muted-foreground">USD</span>
             </div>
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="material">
           <AccordionTrigger>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-foreground">
               <Settings />
-              <span>Material</span>
+              <span className="text-foreground">Material</span>
             </div>
           </AccordionTrigger>
           <AccordionContent className="flex flex-wrap items-center justify-center gap-2 px-10">
-            <button className="flex items-center justify-center rounded-lg border border-zinc-300 px-2 py-1 font-bold text-zinc-900 hover:bg-zinc-100">
+            <button className="flex items-center justify-center rounded-lg border border-muted-foreground px-2 py-1 font-bold text-muted-foreground hover:bg-primary hover:text-white">
               Cotton
             </button>
-            <button className="flex items-center justify-center rounded-lg border border-zinc-300 px-2 py-1 font-bold text-zinc-900 hover:bg-zinc-100">
+            <button className="flex items-center justify-center rounded-lg border border-muted-foreground px-2 py-1 font-bold text-muted-foreground hover:bg-primary hover:text-white">
               Silk
             </button>
-            <button className="flex items-center justify-center rounded-lg border border-zinc-300 px-2 py-1 font-bold text-zinc-900 hover:bg-zinc-100">
+            <button className="flex items-center justify-center rounded-lg border border-muted-foreground px-2 py-1 font-bold text-muted-foreground hover:bg-primary hover:text-white">
               Polyester
             </button>
           </AccordionContent>
@@ -133,8 +133,8 @@ export function Filters() {
         <AccordionItem value="ratting">
           <AccordionTrigger>
             <div className="flex items-center gap-2">
-              <Star className="border-zinc-900 fill-zinc-900 text-zinc-900" />
-              <span>Ratting</span>
+              <Star className="border-foreground fill-foreground text-foreground" />
+              <span className="text-foreground">Ratting</span>
             </div>
           </AccordionTrigger>
           <AccordionContent className="flex items-center gap-2">
@@ -157,28 +157,28 @@ export function Filters() {
         </AccordionItem>
         <AccordionItem value="brand">
           <AccordionTrigger>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-foreground">
               <LayoutDashboard />
-              <span>Brand</span>
+              <span className="text-foreground">Brand</span>
             </div>
           </AccordionTrigger>
           <AccordionContent className="flex flex-wrap items-center justify-center gap-2 px-4">
-            <button className="flex items-center justify-center rounded-lg border border-zinc-300 px-2 py-1 text-xs font-bold text-zinc-900 hover:bg-zinc-100">
+            <button className="flex items-center justify-center rounded-lg border border-muted-foreground px-2 py-1 text-xs font-bold text-muted-foreground hover:bg-primary hover:text-white">
               Gucci
             </button>
-            <button className="flex items-center justify-center rounded-lg border border-zinc-300 px-2 py-1 text-xs font-bold text-zinc-900 hover:bg-zinc-100">
+            <button className="flex items-center justify-center rounded-lg border border-muted-foreground px-2 py-1 text-xs font-bold text-muted-foreground hover:bg-primary hover:text-white">
               Prada
             </button>
-            <button className="flex items-center justify-center rounded-lg border border-zinc-300 px-2 py-1 text-xs font-bold text-zinc-900 hover:bg-zinc-100">
+            <button className="flex items-center justify-center rounded-lg border border-muted-foreground px-2 py-1 text-xs font-bold text-muted-foreground hover:bg-primary hover:text-white">
               Nike
             </button>
-            <button className="flex items-center justify-center rounded-lg border border-zinc-300 px-2 py-1 text-xs font-bold text-zinc-900 hover:bg-zinc-100">
+            <button className="flex items-center justify-center rounded-lg border border-muted-foreground px-2 py-1 text-xs font-bold text-muted-foreground hover:bg-primary hover:text-white">
               Chanel
             </button>
-            <button className="flex items-center justify-center rounded-lg border border-zinc-300 px-2 py-1 text-xs font-bold text-zinc-900 hover:bg-zinc-100">
+            <button className="flex items-center justify-center rounded-lg border border-muted-foreground px-2 py-1 text-xs font-bold text-muted-foreground hover:bg-primary hover:text-white">
               Adidas
             </button>
-            <button className="flex items-center justify-center rounded-lg border border-zinc-300 px-2 py-1 text-xs font-bold text-zinc-900 hover:bg-zinc-100">
+            <button className="flex items-center justify-center rounded-lg border border-muted-foreground px-2 py-1 text-xs font-bold text-muted-foreground hover:bg-primary hover:text-white">
               Diesel
             </button>
           </AccordionContent>

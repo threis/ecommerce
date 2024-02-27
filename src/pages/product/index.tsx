@@ -9,11 +9,11 @@ export function Product() {
   return (
     <div className="mx-auto min-h-screen w-app py-9">
       <div className="flex flex-col gap-3">
-        <h3 className="text-lg text-zinc-500">
-          Home/ <span className="font-medium text-zinc-900">Product</span>
+        <h3 className="text-lg text-muted-foreground">
+          Home/ <span className="font-medium text-foreground">Product</span>
         </h3>
         <div className="mb-6 flex justify-between">
-          <h2 className="text-4xl text-zinc-900">All Product Categories</h2>
+          <h2 className="text-4xl text-foreground">All Product Categories</h2>
           <Input
             placeholder="Search all assets"
             Icon={LockKeyhole}
@@ -24,7 +24,7 @@ export function Product() {
         </div>
         <Tabs defaultValue="cloth">
           <div className="mb-12 flex w-full items-center justify-between gap-4">
-            <TabsList className="flex h-14 w-full justify-between gap-9 rounded-lg border border-zinc-300 p-1.5">
+            <TabsList className="flex h-14 w-full justify-between gap-9 rounded-lg border border-border p-1.5">
               <TabsTrigger
                 value="cloth"
                 className="w-[100px] rounded-lg px-4 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-white"
