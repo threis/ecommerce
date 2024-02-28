@@ -31,7 +31,7 @@ export function Footer() {
   const logo = systemTheme === 'dark' ? darkLogo : lightLogo
 
   return (
-    <div className="bg-secondary-foreground flex h-[450px] pb-8 pt-10">
+    <div className="flex h-[450px] bg-secondary-foreground pb-8 pt-10">
       <div className="mx-auto flex w-app flex-col gap-12">
         <div className="grid grid-cols-4">
           <div className="flex flex-col gap-4">
@@ -39,19 +39,19 @@ export function Footer() {
             <div className="flex flex-col gap-2">
               <a
                 href=""
-                className="text-muted-foreground hover:text-secondary text-sm"
+                className="text-sm text-muted-foreground hover:text-primary"
               >
                 Sell product on Ecommerce
               </a>
               <a
                 href=""
-                className="text-muted-foreground hover:text-secondary text-sm"
+                className="text-sm text-muted-foreground hover:text-primary"
               >
                 Sell on Ecommerce Business
               </a>
               <a
                 href=""
-                className="text-muted-foreground hover:text-secondary text-sm"
+                className="text-sm text-muted-foreground hover:text-primary"
               >
                 Self-Publish with us
               </a>
@@ -62,28 +62,28 @@ export function Footer() {
             <div className="flex flex-col gap-2">
               <a
                 href=""
-                className="text-muted-foreground hover:text-secondary flex items-center gap-2 text-sm"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
               >
                 <Facebook className="size-5" />
                 <span>facebook</span>
               </a>
               <a
                 href=""
-                className="text-muted-foreground hover:text-secondary flex items-center gap-2 text-sm"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
               >
                 <Instagram className="size-5" />
                 Instagram
               </a>
               <a
                 href=""
-                className="text-muted-foreground hover:text-secondary flex items-center gap-2 text-sm"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
               >
                 <Linkedin className="size-5" />
                 Linkedin
               </a>
               <a
                 href=""
-                className="text-muted-foreground hover:text-secondary flex items-center gap-2 text-sm"
+                className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
               >
                 <Twitter className="size-5" />X
               </a>
@@ -125,30 +125,27 @@ export function Footer() {
             </div>
           </div>
           <div className="flex flex-col gap-4">
-            <a
-              href=""
-              className="hover:text-muted-foreground text-xl font-medium "
-            >
+            <a href="" className="text-xl font-medium hover:text-primary">
               Terms and Conditions
             </a>
           </div>
         </div>
-        <div className="bg-secondary-foreground h-0.5 w-full rounded-full" />
+        <div className="h-0.5 w-full rounded-full bg-secondary-foreground" />
         <div className="mx-auto flex items-center gap-10">
           <img src={logo} alt="" />
           <Select defaultValue="english">
             <fieldset className="rounded-lg border-2 border-border focus-within:border-2 focus-within:border-primary">
-              <SelectTrigger className="bg-secondary-foreground peer h-12 w-52 rounded-lg border-none px-4 py-2 focus:ring-0 focus:ring-transparent focus:ring-offset-0 ">
+              <SelectTrigger className="peer h-12 w-52 rounded-lg border-none bg-secondary-foreground px-4 py-2 focus:ring-0 focus:ring-transparent focus:ring-offset-0 ">
                 <div className="flex items-center justify-start gap-4">
                   <Languages />
                   <SelectValue defaultValue="english" />
                 </div>
               </SelectTrigger>
-              <legend className="text-muted-foreground ml-3 px-1 text-xs peer-focus:text-primary">
+              <legend className="ml-3 px-1 text-xs text-muted-foreground peer-focus:text-primary">
                 Language
               </legend>
             </fieldset>
-            <SelectContent className="text-secondary bg-secondary-foreground">
+            <SelectContent className="bg-secondary-foreground text-secondary">
               <SelectItem value="english">
                 <span>English</span>
               </SelectItem>
@@ -159,12 +156,12 @@ export function Footer() {
           </Select>
           <a
             href=""
-            className="text-muted-foreground hover:text-secondary font-semibold"
+            className="font-semibold text-muted-foreground hover:text-primary"
           >
             Download App
           </a>
         </div>
-        <div className="text-muted mx-auto">
+        <div className="mx-auto text-muted">
           Copyright {new Date().getFullYear()}
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { Heart, LockKeyhole, PlusCircle } from 'lucide-react'
 
-import productNotFound from '@/assets/not-found.svg'
+import productNotFound from '@/assets/empty-cart.svg'
 import product1 from '@/assets/product-1.png'
 import { Input } from '@/components/form/input'
 import { Pagination } from '@/components/pagination'
@@ -10,7 +10,7 @@ import { Filters } from './filters'
 import { SortResults } from './sort-results'
 
 export function Search() {
-  const isEmpty = false
+  const isEmpty = true
 
   return (
     <Dialog>
@@ -45,8 +45,10 @@ export function Search() {
                 alt=""
                 className="h-[200px] w-[200px] object-cover"
               />
-              <h2 className="text-xl font-medium">Product not found</h2>
-              <p className="font-xs text-zinc-500">
+              <h2 className="text-xl font-medium text-foreground">
+                Product not found
+              </h2>
+              <p className="font-xs text-muted-foreground">
                 Product you’re looking for might not have in our site
               </p>
             </div>

@@ -1,7 +1,7 @@
 import { Minus, Plus, Tags } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
-import noProductInBag from '@/assets/no-product-in-bag.svg'
+import noProductInBag from '@/assets/empty-cart.svg'
 import product1 from '@/assets/product-1.png'
 import { Input } from '@/components/form/input'
 

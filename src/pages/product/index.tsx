@@ -1,7 +1,8 @@
 import { LockKeyhole } from 'lucide-react'
 
 import { Input } from '@/components/form/input'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { TabsList } from '@/components/tabs-list'
+import { Tabs, TabsContent } from '@/components/ui/tabs'
 
 import { CarouselCards } from './carousel-cards'
 
@@ -24,50 +25,17 @@ export function Product() {
         </div>
         <Tabs defaultValue="cloth">
           <div className="mb-12 flex w-full items-center justify-between gap-4">
-            <TabsList className="flex h-14 w-full justify-between gap-9 rounded-lg border border-border p-1.5">
-              <TabsTrigger
-                value="cloth"
-                className="w-[100px] rounded-lg px-4 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-white"
-              >
-                Cloth
-              </TabsTrigger>
-              <TabsTrigger
-                value="shoes"
-                className="w-[100px] rounded-lg px-4 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-white"
-              >
-                Shoes
-              </TabsTrigger>
-              <TabsTrigger
-                value="dresses"
-                className="w-[100px] rounded-lg px-4 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-white"
-              >
-                Hats
-              </TabsTrigger>
-              <TabsTrigger
-                value="hats"
-                className="w-[100px] rounded-lg px-4 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-white"
-              >
-                Skincare
-              </TabsTrigger>
-              <TabsTrigger
-                value="skincare"
-                className="w-[100px] rounded-md px-4 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-white"
-              >
-                Eletronic
-              </TabsTrigger>
-              <TabsTrigger
-                value="eletronic"
-                className="w-[100px] rounded-md px-4 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-white"
-              >
-                Arts
-              </TabsTrigger>
-              <TabsTrigger
-                value="arts"
-                className="w-[100px] rounded-md px-4 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-white"
-              >
-                Books
-              </TabsTrigger>
-            </TabsList>
+            <TabsList
+              tabs={[
+                'cloth',
+                'shoes',
+                'dresses',
+                'hats',
+                'skincare',
+                'eletronic',
+                'arts',
+              ]}
+            />
           </div>
           <TabsContent value="cloth" className="flex flex-col gap-12">
             <CarouselCards title="Best Selling Products:" />

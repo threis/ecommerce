@@ -100,9 +100,6 @@ export function ProductDetail() {
               <button className="flex w-full items-center justify-center rounded-full bg-primary py-3 text-xs font-medium text-white hover:bg-primary/80">
                 Add to card
               </button>
-              <button className="flex min-w-40 items-center justify-center rounded-full border border-border bg-transparent py-3 text-xs font-medium text-primary hover:bg-zinc-100 hover:text-zinc-500">
-                Add to favorite
-              </button>
             </div>
             <div className="flex items-center gap-4">
               <span className="text-sm font-medium text-muted-foreground">
