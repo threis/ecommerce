@@ -30,7 +30,7 @@ export function Payment() {
           </h3>
 
           <RadioGroup
-            className="flex items-center justify-between gap-4"
+            className="flex items-center justify-between gap-4 text-foreground"
             defaultValue="credit"
           >
             <label
@@ -105,7 +105,6 @@ export function Payment() {
                 Icon={Calendar}
                 label="Expired date"
                 placeholder="Enter expired date"
-                type="date"
               />
               <Input
                 Icon={AsteriskSquare}

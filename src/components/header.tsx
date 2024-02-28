@@ -1,5 +1,5 @@
 import { CircleUser, ShoppingCart } from 'lucide-react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 import darkLogo from '@/assets/logo.svg'
 import lightLogo from '@/assets/logo-white.svg'
@@ -9,6 +9,7 @@ import { useTheme } from './theme-provider'
 
 export function Header() {
   const { theme } = useTheme()
+  const { pathname } = useLocation()
 
   const systemTheme =
     theme === 'system'
@@ -20,7 +21,7 @@ export function Header() {
   const logo = systemTheme === 'dark' ? lightLogo : darkLogo
 
   return (
-    <div className="flex h-[72px] items-center border-b-2 border-border bg-header px-20">
+    <div className="bg-header flex h-[72px] items-center border-b-2 border-border px-20">
       <div className="mx-auto flex w-app items-center justify-between">
         <NavLink to="/" className="h-[20px] w-[120px]">
           <img className="h-full w-full" src={logo} alt="" />
@@ -28,29 +29,33 @@ export function Header() {
         <div className="flex items-center gap-4 leading-6 tracking-wider">
           <NavLink
             to="/"
-            className="font-medium text-primary hover:text-primary"
+            className={`font-medium hover:text-primary ${pathname === '/' ? 'text-primary' : 'text-muted-foreground'}`}
           >
             Home
           </NavLink>
           <NavLink
             to="/product"
-            className="text-muted-foreground font-medium hover:text-primary"
+            className={`font-medium hover:text-primary ${pathname === '/product' ? 'text-primary' : 'text-muted-foreground'}`}
           >
             Product
           </NavLink>
           <NavLink
-            className="hover:bg-accent hover:text-accent-foreground flex size-[40px] items-center justify-center rounded-md"
+            className="flex size-[40px] items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
             to="/cart"
           >
             <span className="sr-only">Cart</span>
-            <ShoppingCart className="text-muted-foreground size-4" />
+            <ShoppingCart
+              className={`size-4 ${pathname === '/cart' ? 'text-primary' : 'text-muted-foreground'}`}
+            />
           </NavLink>
           <NavLink
-            className="hover:bg-accent hover:text-accent-foreground flex size-[40px] items-center justify-center rounded-md"
+            className="flex size-[40px] items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
             to="/account"
           >
             <span className="sr-only">User Account</span>
-            <CircleUser className="text-muted-foreground size-4" />
+            <CircleUser
+              className={`size-4 ${pathname === '/account' ? 'text-primary' : 'text-muted-foreground'}`}
+            />
           </NavLink>
           <ModeToggle />
         </div>
