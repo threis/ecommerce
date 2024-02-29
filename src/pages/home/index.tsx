@@ -14,13 +14,12 @@ export function Home() {
     <>
       <main className="mx-auto grid max-w-app grid-cols-2 items-center gap-20 py-14">
         <div className="flex max-w-[600px] flex-col space-y-4">
-          <h2 className="text-4xl text-foreground">Product Collection</h2>
+          <h2 className="text-4xl text-foreground">Shop with confidence</h2>
           <p className="text-justify text-lg leading-8 text-muted-foreground">
-            Welcome to our online fashion haven, where we invite you to embark
-            on a thrilling journey of discovery. We understand that fashion is
-            an expression of your unique personality, and we&apos;ve curated an
-            extensive collection of dresses, shoes, and more to help you find
-            your new favorites.
+            Discover endless possibilities at our online store! Elevate your
+            shopping experience with a curated collection of trend-setting
+            fashion, cutting-edge electronics, and must-have lifestyle
+            essentials.
           </p>
           <div className="flex gap-5">
             <button

@@ -1,42 +1,44 @@
-import { ListFilter } from 'lucide-react'
-import { NavLink } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
 
+import { getBestSellerProducts } from '@/api/get-best-seller-products'
 import { Card } from '@/components/card'
-import { TabsList } from '@/components/tabs-list'
-import { Tabs, TabsContent } from '@/components/ui/tabs'
+import { SkeletonCard } from '@/components/skeleton-screen/skeleton-card'
+
 export function BestSellerProducts() {
+  const { data: bestSellerProducts, isPending: isBestSellerProductsPending } =
+    useQuery({
+      queryKey: ['bestSellerProducts'],
+      queryFn: getBestSellerProducts,
+    })
+
+  console.log(bestSellerProducts)
+
   return (
     <section>
-      <Tabs defaultValue="clothing">
-        <div className="mx-auto flex max-w-app flex-col items-center gap-16 py-[3.75rem]">
-          <h3 className="border-b-2 border-primary text-2xl font-bold text-secondary-foreground">
-            Best Seller Products
-          </h3>
+      <div className="mx-auto flex max-w-app flex-col items-center gap-16 py-[3.75rem]">
+        <h3 className="border-b-2 border-primary text-2xl font-bold text-secondary-foreground">
+          Best Seller Products
+        </h3>
 
-          <TabsContent value="clothing">
-            <Tabs defaultValue="tops" className="space-y-20 ">
-              <div className="flex w-app items-center justify-between gap-4">
-                <TabsList
-                  tabs={['tops', 'bottoms', 'dresses', 'outwear', 'activewear']}
+        <div className="flex items-center justify-between gap-12">
+          {isBestSellerProductsPending &&
+            Array.from({ length: 3 }).map((_, index) => (
+              <SkeletonCard key={index} />
+            ))}
+          {!!bestSellerProducts &&
+            bestSellerProducts.map((product) => {
+              return (
+                <Card
+                  key={product.id}
+                  id={product.id}
+                  image={product.image}
+                  title={product.title}
+                  price={product.price}
                 />
-                <NavLink
-                  to="/search"
-                  className="flex size-10 items-center justify-center rounded-full border border-secondary-foreground"
-                >
-                  <ListFilter className="size-6 text-secondary-foreground" />
-                </NavLink>
-              </div>
-              <TabsContent value="tops">
-                <div className="flex items-center justify-between gap-12">
-                  {Array.from({ length: 3 }).map((_, index) => {
-                    return <Card key={index} />
-                  })}
-                </div>
-              </TabsContent>
-            </Tabs>
-          </TabsContent>
+              )
+            })}
         </div>
-      </Tabs>
+      </div>
     </section>
   )
 }

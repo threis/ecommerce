@@ -1,4 +1,5 @@
 import { Card } from '@/components/card'
+import { SkeletonCard } from '@/components/skeleton-screen/skeleton-card'
 import {
   Carousel,
   CarouselContent,
@@ -7,21 +8,24 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 
-interface CarouselCardsProps {
+type Product = {
+  id: string
   title: string
+  price: number
+  image: string
 }
 
-export function CarouselCards({ title }: CarouselCardsProps) {
+interface CarouselCardsProps {
+  title: string
+  products: Product[] | undefined
+}
+
+export function CarouselCards({ title, products }: CarouselCardsProps) {
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between">
-        <h3 className="inline border-b-2 border-primary pb-1 text-xl font-medium text-foreground">
-          {title}
-        </h3>
-        <a href="" className="text-lg font-medium text-primary">
-          See more+
-        </a>
-      </div>
+      <h3 className="inline border-b-2 border-primary pb-1 text-xl font-medium text-foreground">
+        {title}
+      </h3>
       <div className="w-full">
         <Carousel
           opts={{
@@ -30,11 +34,27 @@ export function CarouselCards({ title }: CarouselCardsProps) {
           className="w-full "
         >
           <CarouselContent className="flex first:-ml-10">
-            {Array.from({ length: 10 }).map((_, index) => (
-              <CarouselItem key={index} className="mr-12 basis-1/4 px-10">
-                <Card />
-              </CarouselItem>
-            ))}
+            {!products &&
+              Array.from({ length: 3 }).map((_, index) => (
+                <CarouselItem key={index} className="mr-12 basis-1/4 px-10">
+                  <SkeletonCard />
+                </CarouselItem>
+              ))}
+
+            {products &&
+              products.map((product) => (
+                <CarouselItem
+                  key={product.id}
+                  className="mr-12 basis-1/4 px-10"
+                >
+                  <Card
+                    id={product.id}
+                    image={product.image}
+                    title={product.title}
+                    price={product.price}
+                  />
+                </CarouselItem>
+              ))}
           </CarouselContent>
           <CarouselPrevious />
           <CarouselNext />

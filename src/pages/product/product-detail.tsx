@@ -1,5 +1,9 @@
-import { ArrowLeft, Minus, Plus, Share2, Star } from 'lucide-react'
+import { useQuery } from '@tanstack/react-query'
+import { Minus, Plus, Share2, Star } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
 
+import { getBestSellerProducts } from '@/api/get-best-seller-products'
+import { getProductById } from '@/api/get-product-by-id'
 import {
   Select,
   SelectContent,
@@ -11,27 +15,46 @@ import {
 import { CarouselCards } from './carousel-cards'
 
 export function ProductDetail() {
+  const [searchParams] = useSearchParams()
+
+  const productId = String(searchParams.get('product_id'))
+
+  const { data: bestSellerProducts } = useQuery({
+    queryKey: ['bestSellerProducts'],
+    queryFn: getBestSellerProducts,
+  })
+
+  const { data: product } = useQuery({
+    queryKey: ['getProductById', productId],
+    queryFn: () => getProductById(productId),
+  })
+
+  const priceFormatted = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(product?.price || 0)
+
   return (
     <div className="mx-auto min-h-screen w-[1200px] py-9">
       <div className="flex flex-col gap-3">
         <h3 className="text-lg text-muted-foreground">
-          Home/ <span className="font-medium text-foreground">Shirt</span>
+          Home/ <span className="font-medium text-foreground">Product</span>
         </h3>
-        <a href="" className="mb-6 flex justify-between">
-          <h2 className="flex items-center gap-2 text-2xl font-medium text-foreground">
-            <ArrowLeft className="size-5" />
-            Back
-          </h2>
-        </a>
 
         <div className="mb-10 grid grid-cols-[700px_1fr] gap-16">
-          <div className="h-full w-full rounded-lg bg-secondary"></div>
+          <div className="h-[700px] w-[650px] rounded-lg bg-secondary">
+            <img
+              src={product?.image}
+              alt=""
+              className="h-full w-full object-cover"
+            />
+          </div>
           <div className="flex flex-col gap-4">
             <h2 className="text-4xl font-medium text-foreground">
-              Shirt mockup concept with plain clothing
+              {product?.title}
             </h2>
             <p className="text-sm font-medium text-muted-foreground">
-              This shirt is made in Thailand in a company called ANM
+              {product?.description}
             </p>
             <div className="flex items-center gap-2">
               <Star className="size-5 fill-amber-400 text-amber-400" />
@@ -40,13 +63,17 @@ export function ProductDetail() {
               <Star className="size-5 fill-amber-400 text-amber-400" />
               <Star className="size-5 fill-amber-400 text-amber-400" />
               <div className="flex items-baseline gap-6">
-                <span className="text-popover-foreground">(5.0)</span>
+                <span className="text-popover-foreground">
+                  ({String(product?.rating?.rate || 0)})
+                </span>
                 <span className="text-sm font-medium text-popover-foreground">
-                  960 reviews
+                  {product?.rating?.count} reviews
                 </span>
               </div>
             </div>
-            <h2 className="text-4xl font-bold text-foreground">9.50 USD</h2>
+            <h2 className="text-4xl font-bold text-foreground">
+              {priceFormatted}
+            </h2>
             <p className="font-medium text-muted-foreground">
               Product options:
             </p>
@@ -103,7 +130,7 @@ export function ProductDetail() {
             </div>
             <div className="flex items-center gap-4">
               <span className="text-sm font-medium text-muted-foreground">
-                Product id: 1234-abcdef
+                Product id: {product?.id}
               </span>
               <button className="flex items-center justify-center rounded-full border-2 border-muted-foreground p-2">
                 <Share2 className="size-5 text-muted-foreground" />
@@ -112,7 +139,10 @@ export function ProductDetail() {
           </div>
         </div>
 
-        <CarouselCards title="These you might also like:" />
+        <CarouselCards
+          title="These you might also like:"
+          products={bestSellerProducts}
+        />
       </div>
     </div>
   )
