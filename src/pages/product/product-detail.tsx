@@ -1,23 +1,21 @@
 import { useQuery } from '@tanstack/react-query'
 import { Minus, Plus, Share2, Star } from 'lucide-react'
+import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { toast } from 'sonner'
 
 import { getBestSellerProducts } from '@/api/get-best-seller-products'
 import { getProductById } from '@/api/get-product-by-id'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import { useCart } from '@/hook/useCart'
 
 import { CarouselCards } from './carousel-cards'
 
 export function ProductDetail() {
+  const { addCartItem } = useCart()
   const [searchParams] = useSearchParams()
 
   const productId = String(searchParams.get('product_id'))
+  const [quantity, setQuantity] = useState(1)
 
   const { data: bestSellerProducts } = useQuery({
     queryKey: ['bestSellerProducts'],
@@ -29,10 +27,35 @@ export function ProductDetail() {
     queryFn: () => getProductById(productId),
   })
 
+  const totalPrice = product ? product.price * quantity : 0
+
   const priceFormatted = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
-  }).format(product?.price || 0)
+  }).format(totalPrice)
+
+  function handleAddQuantity() {
+    setQuantity((state) => state + 1)
+  }
+
+  function handleSubtractQuantity() {
+    if (quantity === 1) {
+      return
+    }
+    setQuantity((state) => state - 1)
+  }
+
+  function handleCopySharedProductURL() {
+    navigator.clipboard.writeText(window.location.href)
+    toast.success('Copy to clipboard')
+  }
+
+  function handleAddProductToCart() {
+    if (product) {
+      addCartItem({ ...product, quantity })
+      toast.success('Added to cart')
+    }
+  }
 
   return (
     <div className="mx-auto min-h-screen w-[1200px] py-9">
@@ -71,60 +94,35 @@ export function ProductDetail() {
                 </span>
               </div>
             </div>
-            <h2 className="text-4xl font-bold text-foreground">
-              {priceFormatted}
-            </h2>
-            <p className="font-medium text-muted-foreground">
-              Product options:
-            </p>
-            <div className="flex flex-col gap-6 rounded-lg border border-border px-6 py-8">
-              <div className="flex gap-8">
-                <div className="flex items-center gap-2">
-                  <span className="text-muted-foreground">Color</span>
-                  <div className="size-5 rounded-full bg-red-500" />
-                  <div className="size-5 rounded-full bg-emerald-500" />
-                  <div className="size-5 rounded-full bg-amber-500" />
-                  <div className="size-5 rounded-full border border-zinc-200 bg-white" />
-                  <div className="size-5 rounded-full border border-zinc-50 bg-black" />
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-muted-foreground">Size</span>
-                  <Select defaultValue="medium">
-                    <SelectTrigger className="h-8 w-16 rounded-md border border-border bg-secondary px-4 py-2 text-muted-foreground">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="bg-secondary text-muted-foreground">
-                      <SelectItem value="small">
-                        <span>S</span>
-                      </SelectItem>
-                      <SelectItem value="medium">
-                        <span>M</span>
-                      </SelectItem>
-                      <SelectItem value="large">
-                        <span>L</span>
-                      </SelectItem>
-                      <SelectItem value="extralarge">
-                        <span>XL</span>
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
+            <div className="flex items-center justify-between gap-6 rounded-lg border border-border px-6 py-8">
               <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">Qty</span>
-                <button className="flex items-center justify-center rounded-full bg-secondary p-2 text-foreground hover:bg-primary">
+                <span className="text-sm text-muted-foreground">Quantity</span>
+                <button
+                  onClick={handleSubtractQuantity}
+                  className="flex items-center justify-center rounded-full bg-secondary p-2 text-foreground hover:bg-primary"
+                >
                   <Minus className="size-3" />
                 </button>
+
                 <span className="flex size-5 items-center justify-center text-xl font-medium text-muted-foreground">
-                  1
+                  {quantity}
                 </span>
-                <button className="flex items-center justify-center rounded-full bg-secondary p-2 text-foreground hover:bg-primary">
+                <button
+                  onClick={handleAddQuantity}
+                  className="flex items-center justify-center rounded-full bg-secondary p-2 text-foreground hover:bg-primary"
+                >
                   <Plus className="size-3" />
                 </button>
               </div>
+              <h2 className="text-4xl font-bold text-foreground">
+                {priceFormatted}
+              </h2>
             </div>
             <div className="flex items-center gap-4">
-              <button className="flex w-full items-center justify-center rounded-full bg-primary py-3 text-xs font-medium text-white hover:bg-primary/80">
+              <button
+                onClick={handleAddProductToCart}
+                className="flex w-full items-center justify-center rounded-full bg-primary py-3 text-xs font-medium text-white hover:bg-primary/80"
+              >
                 Add to card
               </button>
             </div>
@@ -132,7 +130,10 @@ export function ProductDetail() {
               <span className="text-sm font-medium text-muted-foreground">
                 Product id: {product?.id}
               </span>
-              <button className="flex items-center justify-center rounded-full border-2 border-muted-foreground p-2">
+              <button
+                onClick={handleCopySharedProductURL}
+                className="flex items-center justify-center rounded-full border-2 border-muted-foreground p-2"
+              >
                 <Share2 className="size-5 text-muted-foreground" />
               </button>
             </div>

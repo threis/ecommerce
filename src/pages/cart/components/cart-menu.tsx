@@ -10,7 +10,11 @@ export interface CartMenuProps {
   onNavigation?: () => void
 }
 
-export function CartMenu({ buttonTitle, onNavigation }: CartMenuProps) {
+export function CartMenu({
+  buttonTitle,
+  onNavigation,
+  ...props
+}: CartMenuProps) {
   return (
     <div className="flex flex-col gap-6 self-start">
       <div className="flex flex-col gap-6 rounded-2xl bg-secondary px-9 py-8">
@@ -36,9 +40,9 @@ export function CartMenu({ buttonTitle, onNavigation }: CartMenuProps) {
           <span className="text-2xl font-bold text-foreground">16.25 USD</span>
         </div>
         <button
-          type="button"
           className="w-full rounded-full bg-primary py-3 text-white hover:bg-primary/70"
           onClick={onNavigation}
+          {...props}
         >
           {buttonTitle}
         </button>

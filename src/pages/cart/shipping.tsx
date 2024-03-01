@@ -1,3 +1,4 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
   AtSign,
   Building2,
@@ -8,7 +9,9 @@ import {
   Smartphone,
   UserCircle,
 } from 'lucide-react'
+import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { z } from 'zod'
 
 import { Input } from '@/components/form/input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
@@ -16,16 +19,40 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { CartMenu } from './components/cart-menu'
 import { ProgressBar } from './components/progress-bar'
 
+const customerFormValidationSchema = z.object({
+  email: z.string().email(),
+  phone: z.string(),
+  firstName: z.string(),
+  lastName: z.string(),
+  address: z.string(),
+  city: z.string(),
+  state: z.string(),
+  country: z.string(),
+  zipCode: z.string(),
+  enterPrefix: z.string(),
+  deliverOption: z.enum(['standard', 'express']),
+})
+
+type CustomerFormData = z.infer<typeof customerFormValidationSchema>
+
 export function Shipping() {
   const navigate = useNavigate()
 
+  const { register, handleSubmit } = useForm<CustomerFormData>({
+    resolver: zodResolver(customerFormValidationSchema),
+  })
+
+  function handleRegisterCustomer(data: CustomerFormData) {
+    console.log(data)
+    navigate('/cart/payment')
+  }
+
   return (
-    <div className="mx-auto min-h-screen w-[1200px] py-9">
+    <form
+      onSubmit={handleSubmit(handleRegisterCustomer)}
+      className="mx-auto min-h-screen w-[1200px] py-9"
+    >
       <div className="flex flex-col gap-3">
-        <h3 className="text-lg text-muted-foreground">
-          Home/{' '}
-          <span className="font-medium text-foreground">Shopping Bag</span>
-        </h3>
         <div className="mb-6 flex justify-between">
           <h2 className="text-4xl text-foreground">Shopping Bag</h2>
         </div>
@@ -40,7 +67,12 @@ export function Shipping() {
             </h3>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-4">
-                <Input Icon={AtSign} label="Email" placeholder="Enter email" />
+                <Input
+                  Icon={AtSign}
+                  label="Email"
+                  placeholder="Enter email"
+                  {...register('email')}
+                />
                 <Input
                   Icon={UserCircle}
                   label="First name"
@@ -100,63 +132,30 @@ export function Shipping() {
             >
               <label
                 htmlFor="delivery1"
-                className="flex items-center justify-between rounded-lg border-2 border-foreground p-3"
+                className="flex cursor-pointer items-center justify-between rounded-lg border-2 border-foreground p-3"
               >
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="delivery1" id="delivery1" />
-                  <span className="text-muted-foreground">Option 1</span>
+                  <span className="text-muted-foreground">Standard</span>
                 </div>
-                <p className="text-muted-foreground">Free</p>
+                <p className="text-foreground">Free</p>
               </label>
               <label
                 htmlFor="delivery2"
-                className="flex items-center justify-between rounded-lg border-2 border-foreground p-3"
+                className="flex cursor-pointer items-center justify-between rounded-lg border-2 border-foreground p-3"
               >
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="delivery2" id="delivery2" />
-                  <span className="text-muted-foreground">Option 2</span>
+                  <span className="text-muted-foreground">Express</span>
                 </div>
-                <p className="text-muted-foreground">20 USD</p>
-              </label>
-            </RadioGroup>
-          </div>
-          <div className="flex flex-col gap-8">
-            <h3 className="text-2xl font-medium text-foreground">
-              Packaging options
-            </h3>
-            <RadioGroup
-              className="flex flex-col gap-4"
-              defaultValue="packaging1"
-            >
-              <label
-                htmlFor="packaging1"
-                className="flex items-center justify-between rounded-lg border-2 border-foreground p-3"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="packaging1" id="packaging1" />
-                  <span className="text-muted-foreground">Option 1</span>
-                </div>
-                <p className="text-muted-foreground">Free</p>
-              </label>
-              <label
-                htmlFor="packaging2"
-                className="flex items-center justify-between rounded-lg border-2 border-foreground p-3"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="packaging2" id="packaging2" />
-                  <span className="text-muted-foreground">Option 2</span>
-                </div>
-                <p className="text-muted-foreground">20 USD</p>
+                <p className="text-foreground">20 USD</p>
               </label>
             </RadioGroup>
           </div>
         </div>
 
-        <CartMenu
-          buttonTitle="Continue"
-          onNavigation={() => navigate('/cart/payment')}
-        />
+        <CartMenu buttonTitle="Continue" />
       </div>
-    </div>
+    </form>
   )
 }

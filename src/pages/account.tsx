@@ -19,10 +19,6 @@ import {
 export function Account() {
   return (
     <div className="mx-auto min-h-screen w-[1200px] py-9">
-      <h3 className="text-lg text-muted-foreground">
-        Home/ <span className="font-medium text-foreground">Account</span>
-      </h3>
-
       <div className="mx-auto mt-8 flex h-[600px] w-[600px] flex-col items-center gap-4 rounded-lg border-2 border-border p-9">
         <div className="flex flex-col items-center gap-2">
           <img

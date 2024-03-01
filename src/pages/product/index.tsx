@@ -33,9 +33,6 @@ export function Product() {
   return (
     <div className="mx-auto min-h-screen w-app py-9">
       <div className="flex flex-col gap-3">
-        <h3 className="text-lg text-muted-foreground">
-          Home/ <span className="font-medium text-foreground">Product</span>
-        </h3>
         <div className="mb-6 flex justify-between">
           <h2 className="text-4xl text-foreground">All Product Categories</h2>
           <Input

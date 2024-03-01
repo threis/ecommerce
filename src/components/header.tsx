@@ -3,6 +3,8 @@ import { NavLink, useLocation } from 'react-router-dom'
 
 import darkLogo from '@/assets/logo.svg'
 import lightLogo from '@/assets/logo-white.svg'
+import { useCart } from '@/hook/useCart'
+import { cn } from '@/lib/utils'
 
 import { ModeToggle } from './mode-toggle'
 import { useTheme } from './theme-provider'
@@ -10,6 +12,10 @@ import { useTheme } from './theme-provider'
 export function Header() {
   const { theme } = useTheme()
   const { pathname } = useLocation()
+
+  const { cartList } = useCart()
+
+  const cartContent = cartList?.length > 0 ? cartList.length : ''
 
   const systemTheme =
     theme === 'system'
@@ -40,7 +46,11 @@ export function Header() {
             Product
           </NavLink>
           <NavLink
-            className="flex size-[40px] items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
+            className={cn(
+              'relative flex size-[40px] items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground',
+              cartContent &&
+                `after:absolute after:-right-1 after:-top-1 after:flex after:size-4 after:items-center after:justify-center after:rounded-full after:bg-foreground after:p-1 after:text-xs after:font-bold after:text-secondary after:content-['${cartContent}'] `,
+            )}
             to="/cart"
           >
             <span className="sr-only">Cart</span>
