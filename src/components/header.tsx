@@ -15,7 +15,7 @@ export function Header() {
 
   const { cartList } = useCart()
 
-  const cartContent = cartList?.length > 0 ? cartList.length : ''
+  const cartAmount = cartList?.length > 0 ? String(cartList.length) : ''
 
   const systemTheme =
     theme === 'system'
@@ -46,10 +46,11 @@ export function Header() {
             Product
           </NavLink>
           <NavLink
+            data-content={cartAmount}
             className={cn(
               'relative flex size-[40px] items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground',
-              cartContent &&
-                `after:absolute after:-right-1 after:-top-1 after:flex after:size-4 after:items-center after:justify-center after:rounded-full after:bg-foreground after:p-1 after:text-xs after:font-bold after:text-secondary after:content-['${cartContent}'] `,
+              cartAmount &&
+                'after:absolute after:-right-1 after:-top-1 after:flex after:size-4 after:items-center after:justify-center after:rounded-full after:bg-foreground after:p-1 after:text-xs after:font-bold after:text-secondary after:content-[attr(data-content)]',
             )}
             to="/cart"
           >

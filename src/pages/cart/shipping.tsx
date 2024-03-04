@@ -9,12 +9,14 @@ import {
   Smartphone,
   UserCircle,
 } from 'lucide-react'
-import { useForm } from 'react-hook-form'
+import { useEffect } from 'react'
+import { Controller, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 
 import { Input } from '@/components/form/input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { useCart } from '@/hook/useCart'
 
 import { CartMenu } from './components/cart-menu'
 import { ProgressBar } from './components/progress-bar'
@@ -30,7 +32,7 @@ const customerFormValidationSchema = z.object({
   country: z.string(),
   zipCode: z.string(),
   enterPrefix: z.string(),
-  deliverOption: z.enum(['standard', 'express']),
+  deliveryOption: z.enum(['standard', 'express']),
 })
 
 type CustomerFormData = z.infer<typeof customerFormValidationSchema>
@@ -38,7 +40,9 @@ type CustomerFormData = z.infer<typeof customerFormValidationSchema>
 export function Shipping() {
   const navigate = useNavigate()
 
-  const { register, handleSubmit } = useForm<CustomerFormData>({
+  const { deliveryOption, toggleDeliveryOptions } = useCart()
+
+  const { register, handleSubmit, watch, control } = useForm<CustomerFormData>({
     resolver: zodResolver(customerFormValidationSchema),
   })
 
@@ -46,6 +50,12 @@ export function Shipping() {
     console.log(data)
     navigate('/cart/payment')
   }
+
+  const deliveryOptionInput = watch('deliveryOption')
+
+  useEffect(() => {
+    toggleDeliveryOptions(deliveryOptionInput)
+  }, [deliveryOptionInput])
 
   return (
     <form
@@ -126,31 +136,42 @@ export function Shipping() {
             <h3 className="text-2xl font-medium text-foreground">
               Delivery options
             </h3>
-            <RadioGroup
-              className="flex flex-col gap-4"
-              defaultValue="delivery1"
-            >
-              <label
-                htmlFor="delivery1"
-                className="flex cursor-pointer items-center justify-between rounded-lg border-2 border-foreground p-3"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="delivery1" id="delivery1" />
-                  <span className="text-muted-foreground">Standard</span>
-                </div>
-                <p className="text-foreground">Free</p>
-              </label>
-              <label
-                htmlFor="delivery2"
-                className="flex cursor-pointer items-center justify-between rounded-lg border-2 border-foreground p-3"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="delivery2" id="delivery2" />
-                  <span className="text-muted-foreground">Express</span>
-                </div>
-                <p className="text-foreground">20 USD</p>
-              </label>
-            </RadioGroup>
+            <Controller
+              name="deliveryOption"
+              control={control}
+              render={({ field: { name, onChange, value } }) => {
+                return (
+                  <RadioGroup
+                    className="flex flex-col gap-4"
+                    defaultValue={deliveryOption}
+                    name={name}
+                    onValueChange={onChange}
+                    value={value}
+                  >
+                    <label
+                      htmlFor="standard"
+                      className="flex cursor-pointer items-center justify-between rounded-lg border-2 border-foreground p-3"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="standard" id="standard" />
+                        <span className="text-muted-foreground">Standard</span>
+                      </div>
+                      <p className="text-foreground">Free</p>
+                    </label>
+                    <label
+                      htmlFor="express"
+                      className="flex cursor-pointer items-center justify-between rounded-lg border-2 border-foreground p-3"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="express" id="express" />
+                        <span className="text-muted-foreground">Express</span>
+                      </div>
+                      <p className="text-foreground">20 USD</p>
+                    </label>
+                  </RadioGroup>
+                )
+              }}
+            />
           </div>
         </div>
 

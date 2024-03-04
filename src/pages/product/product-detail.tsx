@@ -52,7 +52,7 @@ export function ProductDetail() {
 
   function handleAddProductToCart() {
     if (product) {
-      addCartItem({ ...product, quantity })
+      addCartItem({ ...product, quantity, cartId: '' })
       toast.success('Added to cart')
     }
   }

@@ -11,8 +11,6 @@ export function BestSellerProducts() {
       queryFn: getBestSellerProducts,
     })
 
-  console.log(bestSellerProducts)
-
   return (
     <section>
       <div className="mx-auto flex max-w-app flex-col items-center gap-16 py-[3.75rem]">

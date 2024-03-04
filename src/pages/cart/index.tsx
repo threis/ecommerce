@@ -70,7 +70,7 @@ export function Cart() {
               cartList.map((product) => {
                 return (
                   <div
-                    key={product.id}
+                    key={product.cartId}
                     className="relative flex min-h-[180px] gap-4 rounded-lg border border-muted-foreground px-6 py-10 "
                   >
                     <button

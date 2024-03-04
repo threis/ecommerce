@@ -25,7 +25,7 @@ interface CustomerAddressData {
 }
 
 export interface ProductData {
-  cartId: number
+  cartId: string
   id: string
   title: string
   price: number
@@ -51,11 +51,20 @@ interface CartContextType {
   getAmountItensInCart: () => number
   getTotalPriceInCart: () => number
   clearCartStorage: () => void
+  toggleDeliveryOptions: (option: 'standard' | 'express') => void
+  deliveryOption: 'standard' | 'express'
+  deliveryValue: number
 }
 
 const CartContext = createContext({} as CartContextType)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
+  const [deliveryOption, setDeliveryOption] = useState<'standard' | 'express'>(
+    'standard',
+  )
+
+  const deliveryValue = deliveryOption === 'express' ? 20 : 0
+
   const [cartList, setCartList] = useState<ProductData[]>(() => {
     const storedStateAsJSON = localStorage.getItem('@ecommerce:cart-1.0.0')
 
@@ -73,10 +82,14 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     {} as PaymentFormData,
   )
 
+  function toggleDeliveryOptions(option: 'standard' | 'express') {
+    setDeliveryOption(option)
+  }
+
   function addCartItem(item: ProductData) {
     const newItem = {
       ...item,
-      cartId: Date.now(),
+      cartId: crypto.randomUUID(),
     }
     setCartList([...cartList, newItem])
   }
@@ -93,10 +106,12 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       (cartItem) => cartItem.cartId !== item.cartId,
     )
 
-    setCartList([
+    const updatedCartList = [
       ...cartItemsWithoutUpdatedCartItem,
       { ...item, quantity: item.quantity },
-    ])
+    ].sort((a, b) => (a.cartId > b.cartId ? -1 : 1))
+
+    setCartList(updatedCartList)
   }
 
   function addCustomerAddress(newCustomerAddress: CustomerAddressData) {
@@ -149,6 +164,9 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         getAmountItensInCart,
         getTotalPriceInCart,
         clearCartStorage,
+        toggleDeliveryOptions,
+        deliveryOption,
+        deliveryValue,
       }}
     >
       {children}
