@@ -120,12 +120,12 @@ export function Cart() {
                 )
               })}
 
-            <div className="my-10 h-0.5 w-full bg-foreground" />
+            {/* <div className="my-10 h-0.5 w-full bg-foreground" />
             <Input
               Icon={Tags}
               label="Code"
               placeholder="Enter promotion code to get discount"
-            />
+            /> */}
           </div>
           <CartMenu
             buttonTitle="Continue"

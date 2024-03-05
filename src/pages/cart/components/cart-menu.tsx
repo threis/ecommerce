@@ -9,12 +9,13 @@ import { useCart } from '@/hook/useCart'
 export interface CartMenuProps {
   buttonTitle: string
   onNavigation?: () => void
+  buttonType?: 'button' | 'submit' | 'reset' | undefined
 }
 
 export function CartMenu({
   buttonTitle,
   onNavigation,
-  ...props
+  buttonType = 'button',
 }: CartMenuProps) {
   const { getTotalPriceInCart, cartList, deliveryValue } = useCart()
 
@@ -69,7 +70,7 @@ export function CartMenu({
         <button
           className="w-full rounded-full bg-primary py-3 text-white hover:bg-primary/70"
           onClick={onNavigation}
-          {...props}
+          type={buttonType}
         >
           {buttonTitle}
         </button>
