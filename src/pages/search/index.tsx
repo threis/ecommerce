@@ -1,40 +1,92 @@
-import { Heart, LockKeyhole, PlusCircle } from 'lucide-react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useQuery } from '@tanstack/react-query'
+import { LockKeyhole } from 'lucide-react'
+import { useEffect } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { z } from 'zod'
 
+import { getSearchedProducts } from '@/api/get-searched-products'
 import productNotFound from '@/assets/empty-cart.svg'
-import product1 from '@/assets/product-1.png'
+import { Card } from '@/components/card'
 import { Input } from '@/components/form/input'
 import { Pagination } from '@/components/pagination'
+import { SkeletonCard } from '@/components/skeleton-screen/skeleton-card'
 import { Dialog, DialogTrigger } from '@/components/ui/sidebar-dialog'
 
-import { Filters } from './filters'
-import { SortResults } from './sort-results'
+// import { SortResults } from './sort-results'
+
+const searchProductSchema = z.object({
+  search: z.string(),
+})
+
+type SearchProductData = z.infer<typeof searchProductSchema>
 
 export function Search() {
-  const isEmpty = true
+  const [searchParams, setSearchParams] = useSearchParams()
+  const navigate = useNavigate()
+
+  const methods = useForm<SearchProductData>({
+    resolver: zodResolver(searchProductSchema),
+  })
+
+  const { handleSubmit } = methods
+
+  const searchQuery = searchParams.get('q') || ''
+
+  function handleSearchProduct({ search }: SearchProductData) {
+    if (search) {
+      setSearchParams((state) => {
+        state.set('q', search)
+        return state
+      })
+    }
+  }
+
+  const { data: searchedProducts, isPending: isSearchedProductsPending } =
+    useQuery({
+      queryKey: ['searchedProducts', searchQuery],
+      queryFn: () => getSearchedProducts(searchQuery),
+    })
+
+  useEffect(() => {
+    if (!isSearchedProductsPending && !searchQuery) {
+      navigate('/product')
+    }
+  }, [isSearchedProductsPending, searchQuery, navigate])
+
+  const isEmpty = !isSearchedProductsPending && searchedProducts?.length === 0
 
   return (
     <Dialog>
       <div className="mx-auto flex w-app flex-col gap-20 py-14">
-        <Filters />
+        {/* <Filters /> */}
         <div className="flex w-full flex-col gap-3">
           <h3 className="text-lg text-muted-foreground">
             Home/ <span className="font-medium text-foreground">Search</span>
           </h3>
           <div className="mb-6 flex justify-between">
-            <h2 className="text-4xl text-foreground">Shirt (2005 results)</h2>
+            <h2 className="text-4xl text-foreground">
+              {searchQuery} ({searchedProducts?.length} results)
+            </h2>
             <div className="flex items-center gap-2">
               <DialogTrigger asChild>
-                <button className="bg-transparent px-6 py-1 text-muted-foreground  hover:text-primary">
+                {/* <button className="bg-transparent px-6 py-1 text-muted-foreground  hover:text-primary">
                   Filter
-                </button>
+                </button> */}
               </DialogTrigger>
-              <Input
-                placeholder="Search all assets"
-                Icon={LockKeyhole}
-                label="Search"
-                className=""
-                width="w-[280px]"
-              />
+              <FormProvider {...methods}>
+                <form onSubmit={handleSubmit(handleSearchProduct)}>
+                  <Input
+                    placeholder="Search all assets"
+                    Icon={LockKeyhole}
+                    label="Search"
+                    className=""
+                    width="w-[280px]"
+                    registerName="search"
+                  />
+                </form>
+              </FormProvider>
             </div>
           </div>
 
@@ -58,42 +110,26 @@ export function Search() {
                 <h3 className="inline border-b-2 border-primary pb-1 text-xl font-medium text-foreground">
                   Show results for shirts:
                 </h3>
-                <SortResults />
+                {/* <SortResults /> */}
               </div>
               <div className="flex w-full flex-wrap justify-between gap-10">
-                {Array.from({ length: 10 }).map((_, index) => (
-                  <div
-                    className="flex h-[452px] w-[308px] flex-col rounded-lg border-2 border-border p-6"
-                    key={index}
-                  >
-                    <div className="relative h-[260px] w-[260px] ">
-                      <button className="absolute right-0 top-0 z-10">
-                        <Heart className="size-6 text-foreground" />
-                      </button>
-                      <img
-                        src={product1}
-                        alt=""
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                    <div className="relative mt-auto flex flex-col gap-3">
-                      <h3 className="text-2xl font-medium text-foreground">
-                        Warning
-                      </h3>
-                      <span className="text-xs text-muted-foreground">
-                        Description
-                      </span>
-                      <label className="font-bold text-foreground">
-                        8.00 USD
-                      </label>
-                      <button className="absolute bottom-0 right-0">
-                        <PlusCircle className="size-8 fill-primary text-white" />
-                      </button>
-                    </div>
-                  </div>
-                ))}
+                {isSearchedProductsPending &&
+                  Array.from({ length: 6 }).map((_, index) => (
+                    <SkeletonCard key={index} />
+                  ))}
+
+                {searchedProducts &&
+                  searchedProducts.map((product) => (
+                    <Card
+                      key={product.id}
+                      id={product.id}
+                      image={product.image}
+                      price={product.price}
+                      title={product.title}
+                    />
+                  ))}
               </div>
-              <Pagination />
+              {/* <Pagination /> */}
             </>
           )}
         </div>

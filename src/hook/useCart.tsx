@@ -15,13 +15,16 @@ interface PaymentFormData {
 }
 
 interface CustomerAddressData {
-  zipCode: string
+  email: string
+  phone: string
+  firstName: string
+  lastName: string
   address: string
-  adressNumber: string
-  complement?: string
-  neighborhood: string
   city: string
   state: string
+  country: string
+  zipCode: string
+  prefix: string
 }
 
 export interface ProductData {

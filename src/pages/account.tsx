@@ -38,6 +38,7 @@ export function Account() {
               label="Email"
               placeholder="thiago.reis@ecommerce.com"
               type="email"
+              registerName="account"
             />
             <button
               type="submit"
@@ -52,6 +53,7 @@ export function Account() {
               label="Password"
               placeholder="*********"
               type="password"
+              registerName="password"
             />
             <button
               type="submit"

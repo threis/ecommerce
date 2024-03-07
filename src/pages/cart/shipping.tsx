@@ -40,7 +40,8 @@ type CustomerFormData = z.infer<typeof customerFormValidationSchema>
 export function Shipping() {
   const navigate = useNavigate()
 
-  const { deliveryOption, toggleDeliveryOptions } = useCart()
+  const { deliveryOption, toggleDeliveryOptions, addCustomerAddress } =
+    useCart()
 
   const methods = useForm<CustomerFormData>({
     resolver: zodResolver(customerFormValidationSchema),
@@ -66,8 +67,30 @@ export function Shipping() {
     formState: { errors },
   } = methods
 
-  function handleRegisterCustomer(data: CustomerFormData) {
-    console.log(data)
+  function handleRegisterCustomer({
+    email,
+    phone,
+    firstName,
+    lastName,
+    address,
+    city,
+    state,
+    country,
+    zipCode,
+    prefix,
+  }: CustomerFormData) {
+    addCustomerAddress({
+      email,
+      phone,
+      firstName,
+      lastName,
+      address,
+      city,
+      state,
+      country,
+      zipCode,
+      prefix,
+    })
     navigate('/cart/payment')
   }
 

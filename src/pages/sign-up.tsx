@@ -20,12 +20,14 @@ export function SignUp() {
             label="Email"
             placeholder="Enter your email"
             className="text-foreground"
+            registerName="email"
           />
           <Input
             Icon={CircleUser}
             label="Name"
             placeholder="Enter your name"
             className="text-foreground"
+            registerName="name"
           />
           <Input
             Icon={LockKeyhole}
@@ -33,6 +35,7 @@ export function SignUp() {
             placeholder="Create a password"
             className="text-foreground"
             type="password"
+            registerName="password"
           />
           <Input
             Icon={LockKeyhole}
@@ -40,6 +43,7 @@ export function SignUp() {
             placeholder="Enter password again"
             className="text-foreground"
             type="password"
+            registerName="confirmPassword"
           />
           <div className="flex flex-col space-y-2">
             <label className="flex gap-2" htmlFor="remember">

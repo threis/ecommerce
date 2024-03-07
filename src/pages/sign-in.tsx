@@ -20,6 +20,7 @@ export function SignIn() {
             label="Email"
             placeholder="Enter your email"
             className="text-foreground"
+            registerName="email"
           />
 
           <Input
@@ -28,6 +29,7 @@ export function SignIn() {
             placeholder="Type your password"
             className="text-foreground"
             type="password"
+            registerName="password"
           />
 
           <div className="flex flex-col space-y-2">
